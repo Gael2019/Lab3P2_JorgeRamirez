@@ -17,6 +17,7 @@ public class Lab3P2_JorgeRamirez {
     
     private static ArrayList<Vehiculo> listaVehiculos = new ArrayList<>();
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int opcion;
@@ -30,6 +31,7 @@ public class Lab3P2_JorgeRamirez {
                     agregarAutomovil(scanner);
                     break;
                 case 2:
+                    agregarMotocicleta(scanner);
                     break;
                 case 3:
                   
@@ -102,6 +104,40 @@ public class Lab3P2_JorgeRamirez {
         listaVehiculos.add(automovil);
         System.out.println("Automovil agregado con exito.");
     }
+    // Metodo para agregar una motocicleta
+    private static void agregarMotocicleta(Scanner scanner) {
+        System.out.println("---- Agregar Motocicleta ----");
+        System.out.print("Numero de Placa: ");
+        String numeroPlaca = scanner.nextLine();
+        System.out.print("Marca: ");
+        String marca = scanner.nextLine();
+        System.out.print("Modelo: ");
+        String modelo = scanner.nextLine();
+        System.out.print("Tipo: ");
+        String tipo = scanner.nextLine();
+        System.out.print("Color: ");
+        String color = scanner.nextLine();
+        System.out.print("Ano (dd/MM/yyyy): ");
+        String fechaString = scanner.nextLine();
+        Date anio = parseFecha(fechaString);
+
+        System.out.print("Velocidad Maxima (Km/h): ");
+        int velocidadMaxima = scanner.nextInt();
+        scanner.nextLine(); // Consumir el salto de línea
+        System.out.print("Peso (kg): ");
+        int peso = scanner.nextInt();
+        scanner.nextLine(); // Consumir el salto de línea
+        System.out.print("Consumo de Combustible (L/Km): ");
+        double consumoCombustible = scanner.nextDouble();
+        scanner.nextLine(); // Consumir el salto de línea
+
+        Motocicleta motocicleta = new Motocicleta(numeroPlaca, marca, modelo, tipo, color, anio,
+                velocidadMaxima, peso, consumoCombustible);
+        listaVehiculos.add(motocicleta);
+        System.out.println("Motocicleta agregada con exito.");
+    }
+    
+        
     
      // Metodo auxiliar para parsear la fecha
     private static Date parseFecha(String fechaString) {
