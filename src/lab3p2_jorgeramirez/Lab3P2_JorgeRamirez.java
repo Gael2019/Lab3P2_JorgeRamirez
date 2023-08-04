@@ -26,7 +26,7 @@ public class Lab3P2_JorgeRamirez {
             opcion = scanner.nextInt();
             scanner.nextLine();
             
-            switch (opcion) {
+            switch (opcion) { // en todos estos case llamamos a los metodos creados abajo.
                 case 1:
                     agregarAutomovil(scanner);
                     break;
@@ -43,10 +43,10 @@ public class Lab3P2_JorgeRamirez {
                     eliminarVehiculo(scanner);
                     break;
                 case 6:
-
+                    mostrarVehiculos();
                     break;
                 case 7:
-                    
+                    generarBoleta(scanner);
                     break;
                 case 8:
                     System.out.println("Gracias por usar el programa.");
@@ -58,7 +58,8 @@ public class Lab3P2_JorgeRamirez {
             
         } while (opcion !=8 );
         
-    }
+    } // fin del main
+    //inicio de metodos
     private static void MostrarMenu(){
         System.out.println("---- MENU ----");
         System.out.println("1. Agregar Automovil");
@@ -104,7 +105,7 @@ public class Lab3P2_JorgeRamirez {
         listaVehiculos.add(automovil);
         System.out.println("Automovil agregado con exito.");
     }
-    // Metodo para agregar una motocicleta
+    // Metodo para agregar una motocicleta al seleccionar la opcion en el menu.
     private static void agregarMotocicleta(Scanner scanner) {
         System.out.println("---- Agregar Motocicleta ----");
         System.out.print("Numero de Placa: ");
@@ -123,13 +124,13 @@ public class Lab3P2_JorgeRamirez {
 
         System.out.print("Velocidad Maxima (Km/h): ");
         int velocidadMaxima = scanner.nextInt();
-        scanner.nextLine(); // Consumir el salto de linea
+        scanner.nextLine(); 
         System.out.print("Peso (kg): ");
         int peso = scanner.nextInt();
-        scanner.nextLine(); // Consumir el salto de linea
+        scanner.nextLine(); 
         System.out.print("Consumo de Combustible (L/Km): ");
         double consumoCombustible = scanner.nextDouble();
-        scanner.nextLine(); // Consumir el salto de linea
+        scanner.nextLine(); 
 
         Motocicleta motocicleta = new Motocicleta(numeroPlaca, marca, modelo, tipo, color, anio,
                 velocidadMaxima, peso, consumoCombustible);
@@ -208,7 +209,7 @@ public class Lab3P2_JorgeRamirez {
         String tipo = scanner.nextLine();
         System.out.print("Color: ");
         String color = scanner.nextLine();
-        System.out.print("Ano (dd/MM/yyyy): ");
+        System.out.print("Ano del carro (dd/MM/yyyy): ");
         String fechaString = scanner.nextLine();
         Date anio = parseFecha(fechaString);
 
@@ -248,11 +249,11 @@ public class Lab3P2_JorgeRamirez {
         String tipo = scanner.nextLine();
         System.out.print("Color: ");
         String color = scanner.nextLine();
-        System.out.print("Año (dd/MM/yyyy): ");
+        System.out.print("Ano (dd/MM/yyyy): ");
         String fechaString = scanner.nextLine();
         Date anio = parseFecha(fechaString);
 
-        System.out.print("Velocidad Máxima (Km/h): ");
+        System.out.print("Velocidad Maxima (Km/h): ");
         int velocidadMaxima = scanner.nextInt();
         scanner.nextLine(); // Consumir el salto de línea
         System.out.print("Peso (kg): ");
@@ -293,13 +294,13 @@ public class Lab3P2_JorgeRamirez {
 
         System.out.print("Capacidad de Pasajeros: ");
         int capacidadPasajeros = scanner.nextInt();
-        scanner.nextLine(); // Consumir el salto de línea
+        scanner.nextLine();
         System.out.print("Numero de Ejes: ");
         int numeroEjes = scanner.nextInt();
-        scanner.nextLine(); // Consumir el salto de línea
+        scanner.nextLine(); 
         System.out.print("Longitud (m): ");
         double longitud = scanner.nextDouble();
-        scanner.nextLine(); // Consumir el salto de línea
+        scanner.nextLine();
 
         autobus.setNumeroPlaca(numeroPlaca);
         autobus.setMarca(marca);
@@ -342,7 +343,7 @@ public class Lab3P2_JorgeRamirez {
         System.out.println("Total de Motocicletas: " + countVehiculosTipo(Motocicleta.class));
         System.out.println("Total de Autobuses: " + countVehiculosTipo(Autobus.class));
     }
-    // Método para eliminar un vehículo
+    // Metodo para eliminar un vehiculo
     private static void eliminarVehiculo(Scanner scanner) {
         if (listaVehiculos.isEmpty()) {
             System.out.println("No hay vehiculos registrados para eliminar.");
@@ -364,7 +365,7 @@ public class Lab3P2_JorgeRamirez {
             System.out.println("El indice invalido.");
         }
     }
-     // Método para generar la boleta de revisión vehicular
+     // Método para generar la boleta de la revision vehicular
     private static void generarBoleta(Scanner scanner) {
         if (listaVehiculos.isEmpty()) {
             System.out.println("No hay vehiculos registrados para generar boleta.");
@@ -381,16 +382,27 @@ public class Lab3P2_JorgeRamirez {
         if (indice >= 0 && indice < listaVehiculos.size()) {
             Vehiculo vehiculo = listaVehiculos.get(indice);
             double totalAPagar = calcularTotalAPagar(vehiculo);
-            System.out.println("Boleta de Revisión Vehicular");
-            System.out.println("Datos del Vehiculo:");
+            System.out.println("Boleta de Revision Vehicular");
+            System.out.println("Los datos del Vehiculo son :");
             System.out.println(vehiculo);
-            System.out.println("Total a Pagar: Lps. " + totalAPagar);
+            System.out.println("El total a Pagar es: Lps. " + totalAPagar);
         } else {
             System.out.println("Indice invalido.");
         }
     }
     private static double calcularTotalAPagar(Vehiculo vehiculo){
-        
+         double base = 275;
+        double valorPlaca = 250;
+
+        if (vehiculo instanceof Automovil) {
+            base += 1200;
+        } else if (vehiculo instanceof Motocicleta) {
+            base += 200;
+        } else if (vehiculo instanceof Autobus) {
+            base += 1000;
+        }
+
+        return base + valorPlaca;
     }
      // Metodo auxiliar para parsear la fecha
     private static Date parseFecha(String fechaString) {
@@ -404,14 +416,14 @@ public class Lab3P2_JorgeRamirez {
     /*metodo auxiliar tambien para leer la fecha, lo cree porque al leer las fechas como parseFecha no funcionaba entonces
     al crear este metodo la lee la fecha*/
     private static Date leerFecha(Scanner scanner) {
-    System.out.print("Año (dd/MM/yyyy): ");
+    System.out.print("Ano (dd/MM/yyyy): ");
     String fechaString = scanner.nextLine();
     try {
         return dateFormat.parse(fechaString);
     } catch (Exception e) {
-        System.out.println("Error al parsear la fecha. Se usará la fecha actual.");
+        System.out.println("Error al usar esa fecha, no esta parseada entonces se usara la fecha actual.");
         return new Date();
     }
     }
     
-}
+}//fin de la clase
