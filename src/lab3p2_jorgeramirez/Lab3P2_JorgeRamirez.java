@@ -52,7 +52,7 @@ public class Lab3P2_JorgeRamirez {
                     System.out.println("Gracias por usar el programa.");
                     break;
                 default:
-                    System.out.println("Opción no válida.");
+                    System.out.println("Opcion no valida.");
             }
             
             
