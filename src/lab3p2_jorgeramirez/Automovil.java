@@ -4,6 +4,8 @@
  */
 package lab3p2_jorgeramirez;
 
+import java.util.Date;
+
 /**
  *
  * @author Jorge Ramirez

@@ -21,9 +21,37 @@ public class Lab3P2_JorgeRamirez {
         Scanner scanner = new Scanner(System.in);
         int opcion;
         do {
-            mostrarMenu();
+            MostrarMenu();
             opcion = scanner.nextInt();
             scanner.nextLine();
+            
+            switch (opcion) {
+                case 1:
+                    agregarAutomovil(scanner);
+                    break;
+                case 2:
+                    break;
+                case 3:
+                  
+                    break;
+                case 4:
+                    
+                    break;
+                case 5:
+                    
+                    break;
+                case 6:
+
+                    break;
+                case 7:
+                    
+                    break;
+                case 8:
+                    System.out.println("Gracias por usar el programa.");
+                    break;
+                default:
+                    System.out.println("Opción no válida.");
+            }
             
             
         } while (opcion !=8 );
@@ -43,8 +71,8 @@ public class Lab3P2_JorgeRamirez {
     }
     //agregar un automovil
     private static void agregarAutomovil(Scanner scanner) {
-        System.out.println("---- Agregar Automóvil ----");
-        System.out.print("Número de Placa: ");
+        System.out.println("---- Agregar Automovil ----");
+        System.out.print("Numero de Placa: ");
         String numeroPlaca = scanner.nextLine();
         System.out.print("Marca: ");
         String marca = scanner.nextLine();
@@ -54,25 +82,25 @@ public class Lab3P2_JorgeRamirez {
         String tipo = scanner.nextLine();
         System.out.print("Color: ");
         String color = scanner.nextLine();
-        System.out.print("Año (dd/MM/yyyy): ");
+        System.out.print("Ano (dd/MM/yyyy): ");
         String fechaString = scanner.nextLine();
-        Date anio = parseFecha(fechaString);
+        Date anio = leerFecha(scanner);
 
         System.out.print("Tipo de Combustible: ");
         String tipoCombustible = scanner.nextLine();
-        System.out.print("Número de Puertas: ");
+        System.out.print("Numero de Puertas: ");
         int numeroPuertas = scanner.nextInt();
         scanner.nextLine(); // Consumir el salto de línea
-        System.out.print("Tipo de Transmisión: ");
+        System.out.print("Tipo de Transmision: ");
         String tipoTransmision = scanner.nextLine();
-        System.out.print("Número de Asientos: ");
+        System.out.print("Numero de Asientos: ");
         int numeroAsientos = scanner.nextInt();
         scanner.nextLine(); // Consumir el salto de línea
 
         Automovil automovil = new Automovil(numeroPlaca, marca, modelo, tipo, color, anio,
                 tipoCombustible, numeroPuertas, tipoTransmision, numeroAsientos);
         listaVehiculos.add(automovil);
-        System.out.println("Automóvil agregado con éxito.");
+        System.out.println("Automovil agregado con exito.");
     }
     
      // Metodo auxiliar para parsear la fecha
@@ -80,9 +108,19 @@ public class Lab3P2_JorgeRamirez {
         try {
             return dateFormat.parse(fechaString);
         } catch (Exception e) {
-            System.out.println("Error al parsear la fecha. Se usará la fecha actual.");
+            System.out.println("Ha ocurrido un error entonces Se usara la fecha actual.");
             return new Date();
         }
+    }
+    private static Date leerFecha(Scanner scanner) {
+    System.out.print("Año (dd/MM/yyyy): ");
+    String fechaString = scanner.nextLine();
+    try {
+        return dateFormat.parse(fechaString);
+    } catch (Exception e) {
+        System.out.println("Error al parsear la fecha. Se usará la fecha actual.");
+        return new Date();
+    }
     }
     
 }

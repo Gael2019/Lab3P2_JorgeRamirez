@@ -4,26 +4,30 @@
  */
 package lab3p2_jorgeramirez;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author Jorge Ramirez
  */
 public class Vehiculo {
-    private String numeroPlaca;
+     private String numeroPlaca;
     private String marca;
     private String modelo;
     private String tipo;
     private String color;
-    private int anio;
+    private Date anio;
+    private int anioInt; // Atributo para guardar el año como int
 
-    // Constructor
-    public Vehiculo(String numeroPlaca, String marca, String modelo, String tipo, String color, int anio) {
+    public Vehiculo(String numeroPlaca, String marca, String modelo, String tipo, String color, Date anio) {
         this.numeroPlaca = numeroPlaca;
         this.marca = marca;
         this.modelo = modelo;
         this.tipo = tipo;
         this.color = color;
         this.anio = anio;
+        this.anioInt = obtenerAnioComoInt(anio);
     }
     //getters y setters con insert code.
     public String getNumeroPlaca() {
@@ -66,14 +70,28 @@ public class Vehiculo {
         this.color = color;
     }
 
-    public int getAnio() {
+    public Date getAnio() {
         return anio;
     }
 
-    public void setAnio(int anio) {
+    public void setAnio(Date anio) {
         this.anio = anio;
     }
-    
+
+    public int getAnioInt() {
+        return anioInt;
+    }
+
+    public void setAnioInt(int anioInt) {
+        this.anioInt = anioInt;
+    }
+    // Método auxiliar para obtener el año como int a partir de un objeto Date
+    private int obtenerAnioComoInt(Date fecha) {
+        // Usamos SimpleDateFormat para obtener el año de la fecha
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+        String anioString = sdf.format(fecha);
+        return Integer.parseInt(anioString);
+    }
     // Método toString para mostrar información del vehículo
     @Override
     public String toString() {

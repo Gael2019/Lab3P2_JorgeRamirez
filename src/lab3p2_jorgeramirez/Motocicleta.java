@@ -4,6 +4,9 @@
  */
 package lab3p2_jorgeramirez;
 
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  *
  * @author Jorge Ramirez
@@ -13,8 +16,7 @@ public class Motocicleta extends Vehiculo{
     private int peso;
     private double consumoCombustible;
 
-    // Constructor
-    public Motocicleta(String numeroPlaca, String marca, String modelo, String tipo, String color, int anio,
+    public Motocicleta(String numeroPlaca, String marca, String modelo, String tipo, String color, Date anio,
                        int velocidadMaxima, int peso, double consumoCombustible) {
         super(numeroPlaca, marca, modelo, tipo, color, anio);
         this.velocidadMaxima = velocidadMaxima;
@@ -44,6 +46,12 @@ public class Motocicleta extends Vehiculo{
 
     public void setConsumoCombustible(double consumoCombustible) {
         this.consumoCombustible = consumoCombustible;
+    }
+    // Método auxiliar para convertir el Date a int representando el año
+    private int obtenerAnioInt(Date fecha) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(fecha);
+        return calendar.get(Calendar.YEAR);
     }
      @Override
     public String toString() {
