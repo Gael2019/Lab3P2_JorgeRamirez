@@ -34,13 +34,13 @@ public class Lab3P2_JorgeRamirez {
                     agregarMotocicleta(scanner);
                     break;
                 case 3:
-                  
+                    agregarAutobus(scanner);
                     break;
                 case 4:
-                    
+                    modificarVehiculo(scanner);
                     break;
                 case 5:
-                    
+                    eliminarVehiculo(scanner);
                     break;
                 case 6:
 
@@ -92,12 +92,12 @@ public class Lab3P2_JorgeRamirez {
         String tipoCombustible = scanner.nextLine();
         System.out.print("Numero de Puertas: ");
         int numeroPuertas = scanner.nextInt();
-        scanner.nextLine(); // Consumir el salto de línea
+        scanner.nextLine(); // Consumir el salto de linea
         System.out.print("Tipo de Transmision: ");
         String tipoTransmision = scanner.nextLine();
         System.out.print("Numero de Asientos: ");
         int numeroAsientos = scanner.nextInt();
-        scanner.nextLine(); // Consumir el salto de línea
+        scanner.nextLine(); // Consumir el salto de linea
 
         Automovil automovil = new Automovil(numeroPlaca, marca, modelo, tipo, color, anio,
                 tipoCombustible, numeroPuertas, tipoTransmision, numeroAsientos);
@@ -123,6 +123,137 @@ public class Lab3P2_JorgeRamirez {
 
         System.out.print("Velocidad Maxima (Km/h): ");
         int velocidadMaxima = scanner.nextInt();
+        scanner.nextLine(); // Consumir el salto de linea
+        System.out.print("Peso (kg): ");
+        int peso = scanner.nextInt();
+        scanner.nextLine(); // Consumir el salto de linea
+        System.out.print("Consumo de Combustible (L/Km): ");
+        double consumoCombustible = scanner.nextDouble();
+        scanner.nextLine(); // Consumir el salto de linea
+
+        Motocicleta motocicleta = new Motocicleta(numeroPlaca, marca, modelo, tipo, color, anio,
+                velocidadMaxima, peso, consumoCombustible);
+        listaVehiculos.add(motocicleta);
+        System.out.println("Motocicleta agregada con exito.");
+    }
+    // Método para agregar un autobús
+    private static void agregarAutobus(Scanner scanner) {
+        System.out.println("---- Agregar Autobús ----");
+        System.out.print("Numero de Placa: ");
+        String numeroPlaca = scanner.nextLine();
+        System.out.print("Marca: ");
+        String marca = scanner.nextLine();
+        System.out.print("Modelo: ");
+        String modelo = scanner.nextLine();
+        System.out.print("Tipo: ");
+        String tipo = scanner.nextLine();
+        System.out.print("Color: ");
+        String color = scanner.nextLine();
+        System.out.print("Ano (dd/MM/yyyy): ");
+        String fechaString = scanner.nextLine();
+        Date anio = parseFecha(fechaString);
+
+        System.out.print("Capacidad de Pasajeros: ");
+        int capacidadPasajeros = scanner.nextInt();
+        scanner.nextLine(); 
+        System.out.print("Numero de Ejes: ");
+        int numeroEjes = scanner.nextInt();
+        scanner.nextLine(); 
+        System.out.print("Longitud (m): ");
+        double longitud = scanner.nextDouble();
+        scanner.nextLine(); // Consumir el salto de linea
+
+        Autobus autobus = new Autobus(numeroPlaca, marca, modelo, tipo, color, anio,
+                capacidadPasajeros, numeroEjes, longitud);
+        listaVehiculos.add(autobus);
+        System.out.println("Autobus agregado con exito.");
+    }
+    // Método para modificar un vehículo
+    private static void modificarVehiculo(Scanner scanner) {
+        if (listaVehiculos.isEmpty()) {
+            System.out.println("No hay vehiculos registrados para modificar.");
+            return;
+        }
+
+        System.out.println("---- Modificar Vehículo ----");
+        mostrarVehiculos();
+
+        System.out.print("Seleccione el indice del vehiculo a modificar: ");
+        int indice = scanner.nextInt();
+        scanner.nextLine(); // Consumir el salto de linea
+
+        if (indice >= 0 && indice < listaVehiculos.size()) {
+            Vehiculo vehiculo = listaVehiculos.get(indice);
+
+            if (vehiculo instanceof Automovil) {
+                modificarAutomovil(scanner, (Automovil) vehiculo);
+            } else if (vehiculo instanceof Motocicleta) {
+                modificarMotocicleta(scanner, (Motocicleta) vehiculo);
+            } else if (vehiculo instanceof Autobus) {
+                modificarAutobus(scanner, (Autobus) vehiculo);
+            }
+        } else {
+            System.out.println("Indice invalido.");
+        }
+    }
+    private static void modificarAutomovil(Scanner scanner, Automovil automovil) {
+        System.out.println("---- Modificar Automovil ----");
+        System.out.print("Numero de Placa: ");
+        String numeroPlaca = scanner.nextLine();
+        System.out.print("Marca: ");
+        String marca = scanner.nextLine();
+        System.out.print("Modelo: ");
+        String modelo = scanner.nextLine();
+        System.out.print("Tipo: ");
+        String tipo = scanner.nextLine();
+        System.out.print("Color: ");
+        String color = scanner.nextLine();
+        System.out.print("Ano (dd/MM/yyyy): ");
+        String fechaString = scanner.nextLine();
+        Date anio = parseFecha(fechaString);
+
+        System.out.print("Tipo de Combustible: ");
+        String tipoCombustible = scanner.nextLine();
+        System.out.print("Numero de Puertas: ");
+        int numeroPuertas = scanner.nextInt();
+        scanner.nextLine(); // Consumir el salto de línea
+        System.out.print("Tipo de Transmision: ");
+        String tipoTransmision = scanner.nextLine();
+        System.out.print("Numero de Asientos: ");
+        int numeroAsientos = scanner.nextInt();
+        scanner.nextLine(); // Consumir el salto de línea
+
+        automovil.setNumeroPlaca(numeroPlaca);
+        automovil.setMarca(marca);
+        automovil.setModelo(modelo);
+        automovil.setTipo(tipo);
+        automovil.setColor(color);
+        automovil.setAnio(anio);
+        automovil.setTipoCombustible(tipoCombustible);
+        automovil.setNumeroPuertas(numeroPuertas);
+        automovil.setTipoTransmision(tipoTransmision);
+        automovil.setNumeroAsientos(numeroAsientos);
+
+        System.out.println("Automovil modificado con exito.");
+    }
+    private static void modificarMotocicleta(Scanner scanner, Motocicleta motocicleta) {
+        System.out.println("---- Modificar Motocicleta ----");
+        System.out.print("Numero de Placa: ");
+        String numeroPlaca = scanner.nextLine();
+        System.out.print("Marca: ");
+        String marca = scanner.nextLine();
+        System.out.print("Modelo: ");
+        String modelo = scanner.nextLine();
+        System.out.print("Tipo: ");
+        String tipo = scanner.nextLine();
+        System.out.print("Color: ");
+        String color = scanner.nextLine();
+        System.out.print("Año (dd/MM/yyyy): ");
+        String fechaString = scanner.nextLine();
+        Date anio = parseFecha(fechaString);
+
+        System.out.print("Velocidad Máxima (Km/h): ");
+        int velocidadMaxima = scanner.nextInt();
         scanner.nextLine(); // Consumir el salto de línea
         System.out.print("Peso (kg): ");
         int peso = scanner.nextInt();
@@ -131,14 +262,109 @@ public class Lab3P2_JorgeRamirez {
         double consumoCombustible = scanner.nextDouble();
         scanner.nextLine(); // Consumir el salto de línea
 
-        Motocicleta motocicleta = new Motocicleta(numeroPlaca, marca, modelo, tipo, color, anio,
-                velocidadMaxima, peso, consumoCombustible);
-        listaVehiculos.add(motocicleta);
-        System.out.println("Motocicleta agregada con exito.");
+        motocicleta.setNumeroPlaca(numeroPlaca);
+        motocicleta.setMarca(marca);
+        motocicleta.setModelo(modelo);
+        motocicleta.setTipo(tipo);
+        motocicleta.setColor(color);
+        motocicleta.setAnio(anio);
+        motocicleta.setVelocidadMaxima(velocidadMaxima);
+        motocicleta.setPeso(peso);
+        motocicleta.setConsumoCombustible(consumoCombustible);
+
+        System.out.println("Motocicleta modificada con exito.");
+    }
+    // Método auxiliar para modificar un autobús
+    private static void modificarAutobus(Scanner scanner, Autobus autobus) {
+        System.out.println("---- Modificar Autobus ----");
+        System.out.print("Numero de Placa: ");
+        String numeroPlaca = scanner.nextLine();
+        System.out.print("Marca: ");
+        String marca = scanner.nextLine();
+        System.out.print("Modelo: ");
+        String modelo = scanner.nextLine();
+        System.out.print("Tipo: ");
+        String tipo = scanner.nextLine();
+        System.out.print("Color: ");
+        String color = scanner.nextLine();
+        System.out.print("Ano en formato (dd/MM/yyyy): ");
+        String fechaString = scanner.nextLine();
+        Date anio = parseFecha(fechaString);
+
+        System.out.print("Capacidad de Pasajeros: ");
+        int capacidadPasajeros = scanner.nextInt();
+        scanner.nextLine(); // Consumir el salto de línea
+        System.out.print("Numero de Ejes: ");
+        int numeroEjes = scanner.nextInt();
+        scanner.nextLine(); // Consumir el salto de línea
+        System.out.print("Longitud (m): ");
+        double longitud = scanner.nextDouble();
+        scanner.nextLine(); // Consumir el salto de línea
+
+        autobus.setNumeroPlaca(numeroPlaca);
+        autobus.setMarca(marca);
+        autobus.setModelo(modelo);
+        autobus.setTipo(tipo);
+        autobus.setColor(color);
+        autobus.setAnio(anio);
+        autobus.setCapacidadPasajeros(capacidadPasajeros);
+        autobus.setNumeroEjes(numeroEjes);
+        autobus.setLongitud(longitud);
+
+        System.out.println("Autobus modificado con exito.");
+    }
+    // Método auxiliar para contar el total de vehículos por tipo
+    private static int countVehiculosTipo(Class<?> tipo) {
+        int count = 0;
+        for (Vehiculo vehiculo : listaVehiculos) {
+            if (tipo.isInstance(vehiculo)) {
+                count++;
+            }
+        }
+        return count;
     }
     
-        
-    
+    // Método para mostrar todos los vehículos
+    private static void mostrarVehiculos() {
+        if (listaVehiculos.isEmpty()) {
+            System.out.println("No hay vehiculos registrados.");
+            return;
+        }
+
+        System.out.println("---- Lista de Vehiculos ----");
+        int index = 0;
+        for (Vehiculo vehiculo : listaVehiculos) {
+            System.out.println("Indice " + index + ": " + vehiculo);
+            index++;
+        }
+        System.out.println("Total de Vehiculos: " + listaVehiculos.size());
+        System.out.println("Total de Automoviles: " + countVehiculosTipo(Automovil.class));
+        System.out.println("Total de Motocicletas: " + countVehiculosTipo(Motocicleta.class));
+        System.out.println("Total de Autobuses: " + countVehiculosTipo(Autobus.class));
+    }
+    // Método para eliminar un vehículo
+    private static void eliminarVehiculo(Scanner scanner) {
+        if (listaVehiculos.isEmpty()) {
+            System.out.println("No hay vehiculos registrados para eliminar.");
+            return;
+        }
+
+        System.out.println("---- Eliminar Vehiculo ----");
+        mostrarVehiculos();
+
+        System.out.print("Seleccione el indice del vehiculo a eliminar: ");
+        int indice = scanner.nextInt();
+        scanner.nextLine(); // Consumir el salto de línea
+
+        if (indice >= 0 && indice < listaVehiculos.size()) {
+            Vehiculo vehiculo = listaVehiculos.remove(indice);
+            System.out.println("Vehiculo eliminado:");
+            System.out.println(vehiculo);
+        } else {
+            System.out.println("El indice invalido.");
+        }
+    }
+
      // Metodo auxiliar para parsear la fecha
     private static Date parseFecha(String fechaString) {
         try {
@@ -148,6 +374,8 @@ public class Lab3P2_JorgeRamirez {
             return new Date();
         }
     }
+    /*metodo auxiliar tambien para leer la fecha, lo cree porque al leer las fechas como parseFecha no funcionaba entonces
+    al crear este metodo la lee la fecha*/
     private static Date leerFecha(Scanner scanner) {
     System.out.print("Año (dd/MM/yyyy): ");
     String fechaString = scanner.nextLine();
