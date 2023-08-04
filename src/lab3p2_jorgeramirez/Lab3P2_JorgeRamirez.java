@@ -4,6 +4,8 @@
  */
 package lab3p2_jorgeramirez;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Jorge Ramirez
@@ -14,6 +16,12 @@ public class Lab3P2_JorgeRamirez {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int opcion;
+        do {
+            
+            
+        } while (true);
         
     }
     private static void MostrarMenu(){
@@ -30,35 +38,6 @@ public class Lab3P2_JorgeRamirez {
     }
     //agregar un automovil
     private static void agregarAutomovil(){
-        System.out.println("---- Agregar Automóvil ----");
-        System.out.print("Número de Placa: ");
-        String numeroPlaca = scanner.nextLine();
-        System.out.print("Marca: ");
-        String marca = scanner.nextLine();
-        System.out.print("Modelo: ");
-        String modelo = scanner.nextLine();
-        System.out.print("Tipo: ");
-        String tipo = scanner.nextLine();
-        System.out.print("Color: ");
-        String color = scanner.nextLine();
-        System.out.print("Año: ");
-        int anio = scanner.nextInt();
-        scanner.nextLine(); // Consumir el salto de línea
-
-        System.out.print("Tipo de Combustible: ");
-        String tipoCombustible = scanner.nextLine();
-        System.out.print("Número de Puertas: ");
-        int numeroPuertas = scanner.nextInt();
-        scanner.nextLine(); // Consumir el salto de línea
-        System.out.print("Tipo de Transmisión: ");
-        String tipoTransmision = scanner.nextLine();
-        System.out.print("Número de Asientos: ");
-        int numeroAsientos = scanner.nextInt();
-        scanner.nextLine(); // Consumir el salto de línea
-
-        Automovil automovil = new Automovil(numeroPlaca, marca, modelo, tipo, color, anio,
-                tipoCombustible, numeroPuertas, tipoTransmision, numeroAsientos);
-        listaVehiculos.add(automovil);
-        System.out.println("Automóvil agregado con éxito.");
+        
     }
 }
