@@ -364,7 +364,34 @@ public class Lab3P2_JorgeRamirez {
             System.out.println("El indice invalido.");
         }
     }
+     // Método para generar la boleta de revisión vehicular
+    private static void generarBoleta(Scanner scanner) {
+        if (listaVehiculos.isEmpty()) {
+            System.out.println("No hay vehiculos registrados para generar boleta.");
+            return;
+        }
 
+        System.out.println("---- Generar Boleta de Revision Vehicular ----");
+        mostrarVehiculos();
+
+        System.out.print("Seleccione el indice del vehiculo para generar la boleta: ");
+        int indice = scanner.nextInt();
+        scanner.nextLine(); // Consumir el salto de línea
+
+        if (indice >= 0 && indice < listaVehiculos.size()) {
+            Vehiculo vehiculo = listaVehiculos.get(indice);
+            double totalAPagar = calcularTotalAPagar(vehiculo);
+            System.out.println("Boleta de Revisión Vehicular");
+            System.out.println("Datos del Vehiculo:");
+            System.out.println(vehiculo);
+            System.out.println("Total a Pagar: Lps. " + totalAPagar);
+        } else {
+            System.out.println("Indice invalido.");
+        }
+    }
+    private static double calcularTotalAPagar(Vehiculo vehiculo){
+        
+    }
      // Metodo auxiliar para parsear la fecha
     private static Date parseFecha(String fechaString) {
         try {
